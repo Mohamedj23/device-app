@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/devices")
 public class DeviceController {
 
     private final DeviceService deviceService;
@@ -27,7 +27,7 @@ public class DeviceController {
         return ResponseEntity.ok(deviceService.getAllDevices());
     }
 
-    @GetMapping("/device/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Device> getDeviceById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(deviceService.getDeviceById(id));
@@ -45,7 +45,7 @@ public class DeviceController {
         }
     }
 
-    @DeleteMapping("/device/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDevice(@PathVariable Long id) {
         deviceService.deleteDeviceById(id);
         return ResponseEntity.ok()
@@ -59,7 +59,7 @@ public class DeviceController {
                 .body(addedDevice);
     }
 
-    @PutMapping("/device/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Device> updateDevice(@PathVariable Long id, @RequestBody DeviceDto device) {
         try {
             Device updatedDevice = deviceService.updateDevice(id, device);
@@ -70,7 +70,7 @@ public class DeviceController {
         }
     }
 
-    @PatchMapping("/device/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Device> patchDevice(@PathVariable Long id, @RequestBody DeviceDto device) {
         try {
             Device patchedDevice = deviceService.patchDevice(id, device);
